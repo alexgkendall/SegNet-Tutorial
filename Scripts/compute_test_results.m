@@ -1,3 +1,12 @@
+% if you use another test/train set change number of classes and the
+% unlabeled index as well as number of iterations (needs to be equal to the test set size)
+
+gtPath = '/SegNet/Scripts/gt'; % path to your ground truth images
+predPath = '/SegNet/Scripts/predictions'; %path to your predictions (you get them after you implement saving images in the test_segmentation_camvid.py script - or you write your own)
+groundTruths = dir(gtPath);
+skip = 2; % first two are '.' and '..' so skip them
+predictions = dir(predPath);
+
 iter = 233;
 
 numClasses = 11;
@@ -9,10 +18,12 @@ globalacc = 0;
 
 for i = 1:iter
     display(num2str(i));
-      
-    pred = ?? % set this to iterate through your segnet prediction images
-    annot = ?? % set this to iterate through your ground truth annotations
-    
+
+    pred = imread(strcat(predPath, '/', predictions(i + skip).name)); % set this to iterate through your segnet prediction images
+    pred = pred + 1; % i added this cause i labeled my classes from 0 to 11
+    annot = imread(strcat(gtPath, '/', groundTruths(i + skip).name)); % set this to iterate through your ground truth annotations
+    annot = annot + 1; % i added this cause i labeled my classes from 0 to 11 -> so in that case the next line will find every pixel labeled with unknown_class=12
+
     pixels_ignore = annot == unknown_class;
     pred(pixels_ignore) = 0;
     annot(pixels_ignore) = 0;
