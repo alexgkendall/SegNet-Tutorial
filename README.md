@@ -7,11 +7,11 @@ Please see this link for detailed instructions.
 
 ## Getting Started with Live Demo
 
-If you would just like to try out an example model, then you can find the model used in the [SegNet webdemo](http://mi.eng.cam.ac.uk/projects/segnet/) in the folder ```Example_Models/driving_web_demo``` (you will need [git lfs](https://git-lfs.github.com/) to download the weights).
+If you would just like to try out an example model, then you can find the model used in the [SegNet webdemo](http://mi.eng.cam.ac.uk/projects/segnet/) in the folder ```Example_Models/```. You will need to download the weights separately using the link in the SegNet Model Zoo.
 
 First open ```Scripts/webcam_demo.py``` and edit line 14 to match the path to your installation of SegNet. You will also need a webcam, or alternatively edit line 39 to input a video file instead. To run the demo use the command:
 
-```python Scripts/webcam_demo.py --model Example_Models/driving_web_demo/driving.prototxt --weights /Example_Models/driving_web_demo/driving.caffemodel --colours /Scripts/camvid12.png```
+```python Scripts/webcam_demo.py --model Example_Models/segnet_model_driving_webdemo.prototxt --weights /Example_Models/segnet_weights_driving_webdemo.caffemodel --colours /Scripts/camvid12.png```
 
 ## Publications
 
