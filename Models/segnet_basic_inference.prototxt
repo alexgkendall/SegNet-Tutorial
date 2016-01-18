@@ -498,4 +498,5 @@ layer {
   type: "Softmax"
   bottom: "conv_classifier"
   top: "prob"
+  softmax_param {engine: CAFFE}
 }

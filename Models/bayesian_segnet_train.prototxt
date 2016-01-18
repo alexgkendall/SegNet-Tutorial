@@ -5,8 +5,9 @@ layer {
   top: "data"
   top: "label"
   dense_image_data_param {
-    source: "/SegNet/CamVid/test.txt"	# Change this to the absolute path to your data file
-    batch_size: 1
+    source: "/SegNet/CamVid/train.txt"	# Change this to the absolute path to your data file
+    batch_size: 4   			# Change this number to a batch size that will fit on your GPU
+    shuffle: true
   }
 }
 layer {
@@ -28,6 +29,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 64
     pad: 1
@@ -48,14 +50,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -84,6 +85,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 64
     pad: 1
@@ -104,14 +106,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -152,6 +153,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 128
     pad: 1
@@ -172,14 +174,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -208,6 +209,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 128
     pad: 1
@@ -228,14 +230,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -276,6 +277,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 256
     pad: 1
@@ -296,14 +298,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -332,6 +333,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 256
     pad: 1
@@ -352,14 +354,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -388,6 +389,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 256
     pad: 1
@@ -408,14 +410,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -438,6 +439,15 @@ layer {
   }
 }
 layer {
+  name: "encdrop3"
+  type: "Dropout"
+  bottom: "pool3"
+  top: "pool3"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layer {
   bottom: "pool3"
   top: "conv4_1"
   name: "conv4_1"
@@ -456,6 +466,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -476,14 +487,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -512,6 +522,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -532,14 +543,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -568,6 +578,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -588,14 +599,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -618,6 +628,15 @@ layer {
   }
 }
 layer {
+  name: "encdrop4"
+  type: "Dropout"
+  bottom: "pool4"
+  top: "pool4"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layer {
   bottom: "pool4"
   top: "conv5_1"
   name: "conv5_1"
@@ -636,6 +655,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -656,14 +676,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -692,6 +711,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -712,14 +732,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -748,6 +767,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -768,14 +788,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -795,6 +814,15 @@ layer {
     pool: MAX
     kernel_size: 2
     stride: 2
+  }
+}
+layer {
+  name: "encdrop5"
+  type: "Dropout"
+  bottom: "pool5"
+  top: "pool5"
+  dropout_param {
+    dropout_ratio: 0.5
   }
 }
 layer {
@@ -828,6 +856,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -848,14 +877,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -885,6 +913,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -905,14 +934,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -941,6 +969,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -961,14 +990,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -977,6 +1005,15 @@ layer {
   top: "conv5_1_D"
   name: "relu5_1_D"
   type: "ReLU"
+}
+layer {
+  name: "decdrop5"
+  type: "Dropout"
+  bottom: "conv5_1_D"
+  top: "conv5_1_D"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
 }
 layer {
   name: "upsample4"
@@ -1009,6 +1046,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -1029,14 +1067,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -1065,6 +1102,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 512
     pad: 1
@@ -1085,14 +1123,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -1121,6 +1158,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 256
     pad: 1
@@ -1141,14 +1179,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -1157,6 +1194,15 @@ layer {
   top: "conv4_1_D"
   name: "relu4_1_D"
   type: "ReLU"
+}
+layer {
+  name: "decdrop4"
+  type: "Dropout"
+  bottom: "conv4_1_D"
+  top: "conv4_1_D"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
 }
 layer {
   name: "upsample3"
@@ -1187,6 +1233,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 256
     pad: 1
@@ -1207,14 +1254,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -1243,6 +1289,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 256
     pad: 1
@@ -1263,14 +1310,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -1299,6 +1345,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 128
     pad: 1
@@ -1319,14 +1366,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -1335,6 +1381,15 @@ layer {
   top: "conv3_1_D"
   name: "relu3_1_D"
   type: "ReLU"
+}
+layer {
+  name: "decdrop3"
+  type: "Dropout"
+  bottom: "conv3_1_D"
+  top: "conv3_1_D"
+  dropout_param {
+    dropout_ratio: 0.5
+  }
 }
 layer {
   name: "upsample2"
@@ -1365,6 +1420,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 128
     pad: 1
@@ -1385,14 +1441,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -1421,6 +1476,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 64
     pad: 1
@@ -1441,14 +1497,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -1487,6 +1542,7 @@ layer {
     }
     bias_filler {
       type: "constant"
+      value: 0
     }
     num_output: 64
     pad: 1
@@ -1507,14 +1563,13 @@ layer {
     decay_mult: 0
   }
   bn_param {
-	bn_mode: INFERENCE
 	scale_filler {
 	  type: "constant"
 	  value: 1
 	}
 	shift_filler {
 	  type: "constant"
-	  value: 0.001
+	  value: 0
 	}
  }
 }
@@ -1550,9 +1605,33 @@ layer {
   }
 }
 layer {
-  name: "prob"
-  type: "Softmax"
+  name: "loss"
+  type: "SoftmaxWithLoss"
   bottom: "conv1_1_D"
-  top: "prob"
+  bottom: "label"
+  top: "loss"
   softmax_param {engine: CAFFE}
+  loss_param: {
+    weight_by_label_freqs: true
+    ignore_label: 11
+    class_weighting: 0.2595
+    class_weighting: 0.1826
+    class_weighting: 4.5640
+    class_weighting: 0.1417
+    class_weighting: 0.9051
+    class_weighting: 0.3826
+    class_weighting: 9.6446
+    class_weighting: 1.8418
+    class_weighting: 0.6823
+    class_weighting: 6.2478
+    class_weighting: 7.3614
+  }
+}
+layer {
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "conv1_1_D"
+  bottom: "label"
+  top: "accuracy"
+  top: "per_class_accuracy"
 }
