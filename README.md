@@ -7,7 +7,7 @@ Please see this link for detailed instructions.
 
 ## Getting Started with Live Demo
 
-If you would just like to try out an example model, then you can find the model used in the [SegNet webdemo](http://mi.eng.cam.ac.uk/projects/segnet/) in the folder ```Example_Models/```. You will need to download the weights separately using the link in the [SegNet Model Zoo](https://github.com/alexgkendall/SegNet-Tutorial/blob/37e6e5baa122609c6ae7f02622c3752030db290c/Example_Models/segnet_model_zoo.md).
+If you would just like to try out an example model, then you can find the model used in the [SegNet webdemo](http://mi.eng.cam.ac.uk/projects/segnet/) in the folder ```Example_Models/```. You will need to download the weights separately using the link in the [SegNet Model Zoo](https://github.com/alexgkendall/SegNet-Tutorial/blob/master/Example_Models/segnet_model_zoo.md).
 
 First open ```Scripts/webcam_demo.py``` and edit line 14 to match the path to your installation of SegNet. You will also need a webcam, or alternatively edit line 39 to input a video file instead. To run the demo use the command:
 
@@ -15,7 +15,7 @@ First open ```Scripts/webcam_demo.py``` and edit line 14 to match the path to yo
 
 ## Example Models
 
-A number of example models for indoor and outdoor road scene understanding can be found in the [SegNet Model Zoo](https://github.com/alexgkendall/SegNet-Tutorial/blob/37e6e5baa122609c6ae7f02622c3752030db290c/Example_Models/segnet_model_zoo.md).
+A number of example models for indoor and outdoor road scene understanding can be found in the [SegNet Model Zoo](https://github.com/alexgkendall/SegNet-Tutorial/blob/master/Example_Models/segnet_model_zoo.md).
 
 ## Publications
 
