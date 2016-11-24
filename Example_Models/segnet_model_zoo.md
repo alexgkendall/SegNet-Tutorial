@@ -43,8 +43,7 @@ This model is based on the Dropout enc-dec variant and is designed for a 224x224
 
 This model finetuned the webdemo weights using the [CityScapes dataset](https://www.cityscapes-dataset.com/) (11 class version).
 
- - 11 Class CityScapes Model (trained by *Timo Sämann*, Aschaffenburg University of Applied Sciences
-or simpler Aschaffenburg (UAS)) model file: ```segnet_model_driving_webdemo.prototxt``` weights: [http://mi.eng.cam.ac.uk/~agk34/resources/SegNet/segnet_iter_30000_timo.caffemodel]
+ - 11 Class CityScapes Model (trained by *Timo Sämann*, Aschaffenburg University of Applied Sciences) model file: ```segnet_model_driving_webdemo.prototxt``` weights: [http://mi.eng.cam.ac.uk/~agk34/resources/SegNet/segnet_iter_30000_timo.caffemodel]
 
 ## License
 
