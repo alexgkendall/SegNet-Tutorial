@@ -39,6 +39,13 @@ These models have been trained on the [Pascal VOC 2012 dataset ](http://host.rob
 
 This model is based on the Dropout enc-dec variant and is designed for a 224x224 pixel input.
 
+### CityScapes
+
+This model finetuned the webdemo weights using the [CityScapes dataset](https://www.cityscapes-dataset.com/) (11 class version).
+
+ - 11 Class CityScapes Model (trained by *Timo Sämann*, Aschaffenburg University of Applied Sciences
+or simpler Aschaffenburg (UAS)) model file: ```segnet_model_driving_webdemo.prototxt``` weights: [http://mi.eng.cam.ac.uk/~agk34/resources/SegNet/segnet_iter_30000_timo.caffemodel]
+
 ## License
 
 These models are released under a creative commons license which allows for personal and research use only. For a commercial license please contact the authors. You can view a license summary here:
