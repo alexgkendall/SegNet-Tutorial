@@ -5,6 +5,14 @@ http://mi.eng.cam.ac.uk/projects/segnet/tutorial.html
 
 Please see this link for detailed instructions.
 
+## Caffe-SegNet
+
+SegNet requires a modified version of Caffe to run. Please download and compile caffe-segnet to use these models:
+https://github.com/alexgkendall/caffe-segnet
+
+This version supports cudnn v2 acceleration. @TimoSaemann has a branch supporting a more recent version of Caffe (Dec 2016) with cudnn v5.1:
+https://github.com/TimoSaemann/caffe-segnet-cudnn5
+
 ## Getting Started with Live Demo
 
 If you would just like to try out an example model, then you can find the model used in the [SegNet webdemo](http://mi.eng.cam.ac.uk/projects/segnet/) in the folder ```Example_Models/```. You will need to download the weights separately using the link in the [SegNet Model Zoo](https://github.com/alexgkendall/SegNet-Tutorial/blob/master/Example_Models/segnet_model_zoo.md).
