@@ -38,14 +38,15 @@ cv2.namedWindow("SegNet")
 
 cap = cv2.VideoCapture(0) # Change this to your webcam ID, or file name for your video file
 
-if cap.isOpened(): # try to get the first frame
-    rval, frame = cap.read()
-else:
-    rval = False
+rval = True
 
 while rval:
 	start = time.time()
 	rval, frame = cap.read()
+
+        if rval == False:
+            break
+
 	end = time.time()
 	print '%30s' % 'Grabbed camera frame in ', str((end - start)*1000), 'ms'
 
