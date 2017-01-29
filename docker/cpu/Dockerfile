@@ -20,8 +20,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         protobuf-compiler \
         python-dev \
         python-numpy \
-        python-pip \
-        python-scipy && \
+        python-scipy \
+        python-opencv \
+        python-tk \
+        ca-certificates \
+        curl && \
+    curl https://bootstrap.pypa.io/get-pip.py  > get-pip.py && python get-pip.py && \
     rm -rf /var/lib/apt/lists/*
 
 ENV CAFFE_ROOT=/opt/caffe
