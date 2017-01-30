@@ -14,15 +14,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libhdf5-serial-dev \
         libleveldb-dev \
         liblmdb-dev \
-        libopencv-dev \
         libprotobuf-dev \
         libsnappy-dev \
         protobuf-compiler \
         python-dev \
         python-numpy \
-        python-pip \
-        python-scipy && \
+        python-scipy \
+        python-tk \
+        libgtk2.0-dev \
+        ca-certificates \
+        curl && \
+    curl https://bootstrap.pypa.io/get-pip.py  > get-pip.py && python get-pip.py && \
     rm -rf /var/lib/apt/lists/*
+
+WORKDIR /opt
+RUN git clone -b 2.4 https://github.com/Itseez/opencv.git && \
+    mkdir opencv/build && cd opencv/build && \
+    cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ../ && \
+    make -j"$(nproc)" && make -j"$(nproc)" install
 
 ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
