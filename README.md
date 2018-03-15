@@ -27,20 +27,20 @@ Use docker to compile caffe and run the examples. In order to run caffe on the g
 
 to run caffe on the CPU:
 ```
-docker build -t caffe:cpu ./cpu 
+docker build -t bvlc/caffe:cpu ./cpu 
 # check if working
-docker run -ti caffe:cpu caffe --version
+docker run -ti bvlc/caffe:cpu caffe --version
 # get a bash in container to run examples
-docker run -ti --volume=$(pwd):/SegNet -u $(id -u):$(id -g) caffe:cpu bash
+docker run -ti --volume=$(pwd):/SegNet -u $(id -u):$(id -g) bvlc/caffe:cpu bash
 ```
 
 to run caffe on the GPU:
 ```
-docker build -t caffe:gpu ./gpu
+docker build -t bvlc/caffe:gpu ./gpu
 # check if working
-docker run -ti caffe:gpu caffe device_query -gpu 0
+docker run -ti bvlc/caffe:gpu caffe device_query -gpu 0
 # get a bash in container to run examples
-docker run -ti --volume=$(pwd):/SegNet -u $(id -u):$(id -g) caffe:gpu bash
+docker run -ti --volume=$(pwd):/SegNet -u $(id -u):$(id -g) bvlc/caffe:gpu bash
 ```
 
 ## Example Models
