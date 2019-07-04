@@ -5,6 +5,9 @@ http://mi.eng.cam.ac.uk/projects/segnet/tutorial.html
 
 Please see this link for detailed instructions.
 
+## What has been changed from the original repository?
+I added a Dockerfile for cudnn5. It is using [caffe-segnet-cudnn5](https://github.com/TimoSaemann/caffe-segnet-cudnn5). In case you are using a GPU with Pascal architecture, you might have to use this Dockerfile.
+
 ## Caffe-SegNet
 
 SegNet requires a modified version of Caffe to run. Please download and compile caffe-segnet to use these models:
@@ -19,7 +22,9 @@ If you would just like to try out an example model, then you can find the model 
 
 First open ```Scripts/webcam_demo.py``` and edit line 14 to match the path to your installation of SegNet. You will also need a webcam, or alternatively edit line 39 to input a video file instead. To run the demo use the command:
 
-```python Scripts/webcam_demo.py --model Example_Models/segnet_model_driving_webdemo.prototxt --weights /Example_Models/segnet_weights_driving_webdemo.caffemodel --colours /Scripts/camvid12.png```
+```python Scripts/webcam_demo.py --model Example_Models/segnet_model_driving_webdemo.prototxt --weights Example_Models/segnet_weights_driving_webdemo.caffemodel --colours Scripts/camvid12.png```
+
+
 
 ## Getting Started with Docker
 
@@ -27,7 +32,7 @@ Use docker to compile caffe and run the examples. In order to run caffe on the g
 
 to run caffe on the CPU:
 ```
-docker build -t bvlc/caffe:cpu ./cpu 
+docker build -t bvlc/caffe:cpu ./cpu
 # check if working
 docker run -ti bvlc/caffe:cpu caffe --version
 # get a bash in container to run examples
@@ -43,6 +48,25 @@ docker run -ti bvlc/caffe:gpu caffe device_query -gpu 0
 docker run -ti --volume=$(pwd):/SegNet -u $(id -u):$(id -g) bvlc/caffe:gpu bash
 ```
 
+to run caffe on the GPU (cudnn 5):
+```
+docker build -t bvlc/caffe:gpu ./gpu-cudnn5
+# check if working
+docker run -ti bvlc/caffe:gpu caffe device_query -gpu 0
+# get a bash in container to run examples
+docker run -ti --volume=$(pwd):/SegNet -u $(id -u):$(id -g) bvlc/caffe:gpu bash
+```
+
+### Enabling Webcam and Display for a Docker container
+
+If you want to run the webcam_demo.py, the docker container should access the host's display and webcam. Run this commands to run the Docker container. Change docker to *nvidia-docker* if you are using gpu version.
+
+```shell
+xhost local:root
+docker run -it --env="DISPLAY" --env QT_X11_NO_MITSHM=1 --volume="/etc/group:/etc/group:ro" --volume="/etc/shadow:/etc/shadow:ro" --volume="/etc/sudoers.d:/etc/sudoers.d:ro" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" --device=/dev/video0:/dev/video0 (image_name) /bin/bash
+
+```
+
 ## Example Models
 
 A number of example models for indoor and outdoor road scene understanding can be found in the [SegNet Model Zoo](https://github.com/alexgkendall/SegNet-Tutorial/blob/master/Example_Models/segnet_model_zoo.md).
@@ -55,7 +79,7 @@ http://arxiv.org/abs/1511.02680
 Alex Kendall, Vijay Badrinarayanan and Roberto Cipolla "Bayesian SegNet: Model Uncertainty in Deep Convolutional Encoder-Decoder Architectures for Scene Understanding." arXiv preprint arXiv:1511.02680, 2015.
 
 http://arxiv.org/abs/1511.00561
-Vijay Badrinarayanan, Alex Kendall and Roberto Cipolla "SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation." PAMI, 2017. 
+Vijay Badrinarayanan, Alex Kendall and Roberto Cipolla "SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation." PAMI, 2017.
 
 ## License
 
@@ -70,4 +94,3 @@ Alex Kendall
 agk34@cam.ac.uk
 
 Cambridge University
-
